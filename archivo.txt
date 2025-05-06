@@ -2,3 +2,33 @@ curl -O https://raw.githubusercontent.com/infraestructura-it/node-red-x8/main/se
 curl -O https://raw.githubusercontent.com/infraestructura-it/node-red-x9/refs/heads/main/activar.sh
 curl -O https://raw.githubusercontent.com/infraestructura-it/node-red-x9/refs/heads/main/setup.sh
 curl -O https://raw.githubusercontent.com/infraestructura-it/node-red-x9/refs/heads/main/archivo.txt
+
+git ls-files -s  averiguar enlases simbolicos 
+
+
+Cómo solucionarlo
+Si querés que .node-red sea una carpeta normal en el repo y no un symlink:
+
+Eliminá el symlink:
+
+bash
+Copiar
+Editar
+rm nodered-flujos/.node-red
+Volvé a crear la carpeta como una real:
+
+bash
+Copiar
+Editar
+mkdir -p nodered-flujos/.node-red
+Añadila correctamente al repo:
+
+bash
+Copiar
+Editar
+git add nodered-flujos/.node-red
+git commit -m "Corrijo .node-red como carpeta real, no symlink"
+🧠 ¿Por qué importa?
+Git no almacena carpetas vacías ni gestiona bien los symlinks si se crean por error. Si lo que querés es que Codespaces y GitHub muestren siempre una carpeta real (sin flecha), este cambio lo soluciona.
+
+¿Querés que .node-red esté en el repo solo como estructura vacía o con ciertos archivos de configuración incluidos?
